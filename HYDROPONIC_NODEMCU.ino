@@ -17,8 +17,8 @@
 #include "PageIndex.h"         // HTML untuk struktur web
 
 //-----WIFI
-#define ssid "RASTEK_UPSTAIRS"    //SSID WiFi yang akan terhubung
-#define pass "rastek@reog"        //PASSWORD WiFi yang akan terhubung
+#define ssid "AP-RASTEK-RND"    //SSID WiFi yang akan terhubung
+#define pass "admin125"         //PASSWORD WiFi yang akan terhubung
 
 //-----MQTT
 #define mqtt_server "broker.emqx.io"   //Server MQTT
@@ -26,10 +26,10 @@
 #define mqtt_password "ADMIN123"       // password untuk server
 
 //-----topic  MQTT
-#define T_topic  "/suhulingkungan"  // topic mqtt sensor DHT11
+#define T_topic  "/suhuLingkungan"  // topic mqtt sensor DHT11
 #define SC_topic "/jadwal"          // topic schedule pompa
 #define ID_topic "/id"              // topic ID perangkat
-#define TA_topic "/suhuair"         // topic Thermistor sensor suhu air
+#define TA_topic "/suhuAir"         // topic Thermistor sensor suhu air
 #define TDS_topic "/tds"            // topic Sensor TDS
 #define DK_topic "/deviceKey"       // topic Device key
 
@@ -43,6 +43,10 @@
 #define OFF LOW           // definisikan LOW sebagai OFF
 
 //-----Variable Object
+IPAddress ip(192,168,30,1);
+IPAddress gateway(192,168,0,1);
+IPAddress subnet(255,255,255,0);
+
 DHT dht(DHTPIN, DHTTYPE);            
 WiFiClient espClient;                
 PubSubClient client(espClient);
@@ -164,6 +168,7 @@ lcd.begin();
 //------WIFI
   Serial.print("Connecting to ");
   Serial.println(ssid);
+  WiFi.config(ip, gateway, subnet);
   WiFi.begin(ssid, pass);
   while (WiFi.status() != WL_CONNECTED) {
     for (int i = 10; i < 16; i++) {

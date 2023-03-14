@@ -3,7 +3,7 @@ void TampilanLCD(){
 //-----Tampilan LCD IP WEB.LOCAL
 lcd.clear();
 lcd.setCursor(0,0);
-lcd.print("WEB: ");
+lcd.print("WEB:");
 lcd.print(WiFi.localIP());
 
 //-----Tampilan LCD StatusPompa ON/OFF
@@ -17,7 +17,6 @@ lcd.print(WiFi.localIP());
 
 //-----Tampilan LCD jadwal pompa nyala dan mati
 lcd.clear();
-lcd.setCursor(0,0);
 lcd.setCursor(0,0);
 lcd.print("Pompa ON : ");
 lcd.print(jam_nyala);
@@ -59,6 +58,7 @@ lcd.print("C");
 lcd.setCursor(0,1);
 lcd.print("PPM    : ");
 lcd.print(ppm);
+lcd.print("%");
     delay(5000);
 
 //-----Tampilan LCD JAM      
